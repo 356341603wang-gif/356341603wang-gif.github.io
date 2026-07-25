@@ -1,0 +1,18 @@
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Cache-Control: public, max-age=3600
+
+/audio.mp3
+  Cache-Control: public, max-age=31536000, immutable
+
+/guru-rinpoche-thangka-original.part-00
+  Content-Type: application/octet-stream
+  Cache-Control: public, max-age=31536000, immutable
+
+/guru-rinpoche-thangka-original.part-01
+  Content-Type: application/octet-stream
+  Cache-Control: public, max-age=31536000, immutable
+
+/guru-rinpoche-1920x2400-v1.jpg
+  Cache-Control: public, max-age=31536000, immutable
