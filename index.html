@@ -2,626 +2,78 @@
 <html lang="zh-CN">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <meta name="theme-color" content="#160b07" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#1b0906" />
     <meta
       name="description"
       content="蔣貢康楚仁波切唱诵 · सप्तपङ्क्तिप्रार्थना"
     />
     <title>सप्तपङ्क्तिप्रार्थना</title>
-    <style>
-      :root {
-        color-scheme: dark;
-        font-family: Inter, "PingFang SC", "Helvetica Neue", sans-serif;
-      }
-
-      * {
-        box-sizing: border-box;
-      }
-
-      html,
-      body {
-        width: 100%;
-        min-height: 100%;
-        margin: 0;
-        overflow: hidden;
-        background: #160b07;
-      }
-
-      button {
-        color: inherit;
-        font: inherit;
-      }
-
-      .ritual-stage {
-        --ritual-x: 0px;
-        --ritual-y: 0px;
-        --ritual-depth-x: 0px;
-        --ritual-depth-y: 0px;
-        --object-x: 50%;
-        --object-y-start: 17.5%;
-        --object-y-end: 18.9%;
-        position: relative;
-        min-height: 100vh;
-        min-height: 100dvh;
-        overflow: hidden;
-        isolation: isolate;
-        color: #fff8e9;
-        background: #160b07;
-      }
-
-      .ritual-depth,
-      .ritual-close-artwork,
-      .ritual-full-artwork {
-        position: absolute;
-        inset: 0;
-        display: block;
-        width: 100%;
-        height: 100%;
-        user-select: none;
-        -webkit-user-drag: none;
-      }
-
-      .ritual-depth {
-        z-index: -2;
-        object-fit: cover;
-        object-position: 50% 18%;
-        transform: translate3d(
-            var(--ritual-depth-x),
-            var(--ritual-depth-y),
-            0
-          )
-          scale(1.14);
-        filter: blur(28px) saturate(0.82) brightness(0.54);
-        animation: depth-breathe 18s ease-in-out infinite alternate;
-        transition: transform 1.8s cubic-bezier(0.16, 1, 0.3, 1);
-      }
-
-      .ritual-close-artwork {
-        z-index: -1;
-        object-fit: cover;
-        object-position: 50% 18%;
-        translate: var(--ritual-x) var(--ritual-y);
-        filter: saturate(0.96) contrast(1.025) brightness(0.88);
-        animation:
-          artwork-open 2.15s cubic-bezier(0.16, 1, 0.3, 1) both,
-          artwork-breathe 16s 2.15s ease-in-out infinite alternate;
-        transition:
-          opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
-          translate 1.6s cubic-bezier(0.16, 1, 0.3, 1),
-          filter 1.2s ease;
-      }
-
-      .ritual-stage.is-playing .ritual-close-artwork {
-        filter: saturate(1.04) contrast(1.035) brightness(0.92);
-      }
-
-      .ritual-full-artwork {
-        z-index: 0;
-        object-fit: contain;
-        object-position: center;
-        opacity: 0;
-        transform: scale(0.92);
-        filter: drop-shadow(0 22px 46px rgb(0 0 0 / 0.42));
-        pointer-events: none;
-        transition:
-          opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
-          transform 1s cubic-bezier(0.16, 1, 0.3, 1);
-      }
-
-      .ritual-stage.is-full .ritual-close-artwork {
-        opacity: 0.2;
-      }
-
-      .ritual-stage.is-full .ritual-full-artwork {
-        opacity: 1;
-        transform: scale(1);
-      }
-
-      .ritual-heading {
-        position: absolute;
-        z-index: 4;
-        top: clamp(28px, 5.4vw, 74px);
-        left: clamp(24px, 5.4vw, 78px);
-        max-width: min(560px, 64vw);
-        opacity: 0;
-        animation: copy-arrive 0.9s 1.35s cubic-bezier(0.16, 1, 0.3, 1)
-          forwards;
-        text-shadow:
-          0 2px 18px rgb(0 0 0 / 0.9),
-          0 1px 2px rgb(0 0 0 / 0.92);
-      }
-
-      .ritual-heading span {
-        display: block;
-        margin-bottom: 14px;
-        color: #f0c986;
-        font-family: "Noto Serif Devanagari", "Kohinoor Devanagari", serif;
-        font-size: 10px;
-        font-weight: 500;
-        line-height: 1;
-        letter-spacing: 0.22em;
-      }
-
-      .ritual-heading h1 {
-        margin: 0;
-        font-family: "Noto Serif Devanagari", "Kohinoor Devanagari",
-          "Devanagari Sangam MN", serif;
-        font-size: clamp(2.15rem, 4.4vw, 4.5rem);
-        font-weight: 400;
-        line-height: 0.96;
-        letter-spacing: -0.045em;
-      }
-
-      .ritual-view-toggle {
-        position: absolute;
-        z-index: 5;
-        top: clamp(26px, 4.4vw, 58px);
-        right: clamp(22px, 4.4vw, 62px);
-        display: grid;
-        justify-items: end;
-        gap: 7px;
-        padding: 0;
-        color: #fff6df;
-        font-family: Inter, "Helvetica Neue", sans-serif;
-        font-size: 8px;
-        line-height: 1;
-        letter-spacing: 0.18em;
-        text-align: right;
-        text-shadow: 0 2px 12px rgb(0 0 0 / 0.86);
-        background: transparent;
-        border: 0;
-        cursor: pointer;
-        opacity: 0;
-        animation: simple-arrive 0.8s 1.6s ease forwards;
-      }
-
-      .ritual-view-toggle span {
-        font-family: "Songti SC", "STSong", serif;
-        font-size: 12px;
-        letter-spacing: 0.16em;
-      }
-
-      .ritual-view-toggle::after {
-        width: 100%;
-        height: 1px;
-        content: "";
-        background: currentColor;
-        transform: scaleX(0.34);
-        transform-origin: right;
-        opacity: 0.7;
-        transition: transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
-      }
-
-      .ritual-view-toggle:hover::after,
-      .ritual-view-toggle:focus-visible::after {
-        transform: scaleX(1);
-      }
-
-      .ritual-credit {
-        position: absolute;
-        z-index: 4;
-        bottom: clamp(30px, 5.4vw, 72px);
-        left: clamp(24px, 5.4vw, 78px);
-        opacity: 0;
-        animation: copy-arrive 0.8s 1.65s cubic-bezier(0.16, 1, 0.3, 1)
-          forwards;
-        text-shadow: 0 2px 14px rgb(0 0 0 / 0.88);
-      }
-
-      .ritual-credit span {
-        display: block;
-        margin-bottom: 9px;
-        color: #f0c986;
-        font-size: 8px;
-        font-weight: 500;
-        letter-spacing: 0.2em;
-      }
-
-      .ritual-credit p {
-        margin: 0;
-        font-family: "Songti SC", "STSong", serif;
-        font-size: 13px;
-        letter-spacing: 0.12em;
-      }
-
-      .ritual-listen {
-        position: absolute;
-        z-index: 6;
-        right: clamp(22px, 4.4vw, 62px);
-        bottom: clamp(28px, 4.8vw, 64px);
-        display: grid;
-        min-width: 148px;
-        min-height: 52px;
-        align-content: center;
-        gap: 4px;
-        padding: 10px 20px;
-        color: #fff8e9;
-        text-align: left;
-        background: rgb(13 7 5 / 0.78);
-        border: 1px solid rgb(255 244 219 / 0.48);
-        border-radius: 999px;
-        box-shadow: 0 14px 42px rgb(0 0 0 / 0.28);
-        cursor: pointer;
-        opacity: 0;
-        animation: copy-arrive 0.8s 1.75s cubic-bezier(0.16, 1, 0.3, 1)
-          forwards;
-        transition:
-          transform 500ms cubic-bezier(0.16, 1, 0.3, 1),
-          border-color 350ms ease;
-      }
-
-      .ritual-listen:hover {
-        transform: translateY(-2px);
-        border-color: #f0c986;
-      }
-
-      .ritual-listen strong {
-        font-family: "Songti SC", "STSong", serif;
-        font-size: 12px;
-        font-weight: 500;
-        letter-spacing: 0.15em;
-      }
-
-      .ritual-listen small {
-        color: rgb(255 248 233 / 0.64);
-        font-size: 8px;
-        font-variant-numeric: tabular-nums;
-        letter-spacing: 0.1em;
-      }
-
-      .ritual-progress {
-        position: absolute;
-        z-index: 8;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        height: 2px;
-        background: rgb(255 248 233 / 0.22);
-      }
-
-      .ritual-progress span {
-        display: block;
-        width: 100%;
-        height: 100%;
-        background: #f0c986;
-        transform: scaleX(0);
-        transform-origin: left;
-        transition: transform 250ms linear;
-      }
-
-      button:focus-visible {
-        outline: 2px solid #fff8e9;
-        outline-offset: 5px;
-      }
-
-      @keyframes artwork-open {
-        0% {
-          clip-path: inset(0 50% 0 50%);
-          transform: scale(1.13);
-        }
-        100% {
-          clip-path: inset(0 0 0 0);
-          transform: scale(1.055);
-        }
-      }
-
-      @keyframes artwork-breathe {
-        0% {
-          object-position: var(--object-x) var(--object-y-start);
-        }
-        100% {
-          object-position: var(--object-x) var(--object-y-end);
-        }
-      }
-
-      @keyframes depth-breathe {
-        0% {
-          transform: translate3d(
-              var(--ritual-depth-x),
-              var(--ritual-depth-y),
-              0
-            )
-            scale(1.14);
-        }
-        100% {
-          transform: translate3d(
-              var(--ritual-depth-x),
-              var(--ritual-depth-y),
-              0
-            )
-            scale(1.18);
-        }
-      }
-
-      @keyframes copy-arrive {
-        0% {
-          opacity: 0;
-          transform: translateY(16px);
-        }
-        100% {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      @keyframes simple-arrive {
-        to {
-          opacity: 1;
-        }
-      }
-
-      @media (max-width: 767px) {
-        .ritual-stage {
-          --object-x: 52%;
-          --object-y-start: 45.5%;
-          --object-y-end: 46.8%;
-        }
-
-        .ritual-depth,
-        .ritual-close-artwork {
-          object-position: 52% 46%;
-        }
-
-        .ritual-close-artwork {
-          filter: saturate(0.96) contrast(1.02) brightness(0.82);
-        }
-
-        .ritual-heading {
-          top: max(24px, env(safe-area-inset-top));
-          right: 20px;
-          left: 20px;
-          max-width: 88vw;
-        }
-
-        .ritual-heading span {
-          margin-bottom: 10px;
-          font-size: 8px;
-        }
-
-        .ritual-heading h1 {
-          max-width: 86vw;
-          font-size: clamp(2rem, 10vw, 3.15rem);
-        }
-
-        .ritual-view-toggle {
-          top: auto;
-          right: 20px;
-          bottom: calc(112px + env(safe-area-inset-bottom));
-        }
-
-        .ritual-credit {
-          bottom: calc(34px + env(safe-area-inset-bottom));
-          left: 20px;
-        }
-
-        .ritual-credit span {
-          display: none;
-        }
-
-        .ritual-credit p {
-          max-width: 136px;
-          font-size: 10px;
-          line-height: 1.5;
-        }
-
-        .ritual-listen {
-          right: 18px;
-          bottom: calc(26px + env(safe-area-inset-bottom));
-          min-width: 140px;
-        }
-
-        .ritual-stage.is-full .ritual-heading {
-          opacity: 0.3;
-        }
-      }
-
-      @media (prefers-reduced-motion: reduce) {
-        *,
-        *::before,
-        *::after {
-          animation-duration: 0.01ms !important;
-          animation-iteration-count: 1 !important;
-          transition-duration: 0.01ms !important;
-        }
-      }
-    </style>
+    <link rel="stylesheet" href="/resonance.css" />
   </head>
   <body>
-    <main id="ritualStage" class="ritual-stage">
-      <img
-        class="ritual-depth artwork"
-        src="/guru-rinpoche-1920x2400-v1.jpg"
-        alt=""
-        width="6391"
-        height="8940"
+    <main
+      id="resonanceStage"
+      class="resonance-stage"
+      data-original-artwork="false"
+    >
+      <canvas
+        id="resonanceCanvas"
+        class="resonance-canvas"
         aria-hidden="true"
-      />
+      ></canvas>
+
       <img
-        id="ritualArtwork"
-        class="ritual-close-artwork artwork"
+        id="resonanceArtwork"
+        class="resonance-accessible-art"
         src="/guru-rinpoche-1920x2400-v1.jpg"
         alt="莲花生大士独尊唐卡"
         width="6391"
         height="8940"
-        decoding="async"
-      />
-      <img
-        class="ritual-full-artwork artwork"
-        src="/guru-rinpoche-1920x2400-v1.jpg"
-        alt=""
-        width="6391"
-        height="8940"
-        aria-hidden="true"
+        data-original-resolution="false"
       />
 
-      <header class="ritual-heading">
-        <span>गुरु पद्मसम्भव</span>
+      <header class="resonance-heading">
+        <span lang="sa">गुरु पद्मसम्भव</span>
         <h1 lang="sa">सप्तपङ्क्तिप्रार्थना</h1>
+        <p>蔣貢康楚仁波切唱诵</p>
       </header>
 
       <button
-        id="viewToggle"
-        class="ritual-view-toggle"
+        id="resonanceListen"
         type="button"
-        aria-label="查看完整唐卡"
-      >
-        <span>全景</span>
-        <b>VIEW THE WHOLE</b>
-      </button>
-
-      <section class="ritual-credit">
-        <span>THE SEVEN LINE PRAYER</span>
-        <p>蔣貢康楚仁波切唱诵</p>
-      </section>
-
-      <button
-        id="listenButton"
-        class="ritual-listen"
-        type="button"
+        class="resonance-listen"
         aria-label="聆听唱诵"
         aria-pressed="false"
       >
-        <strong>聆听</strong>
-        <small id="timeLabel">00:00 / 07:52</small>
+        <span id="resonanceListenLabel" class="resonance-listen-label">
+          聆听
+        </span>
+        <span id="resonanceListenTime" class="resonance-listen-time">
+          00:00 / 07:52
+        </span>
       </button>
 
-      <div class="ritual-progress" aria-hidden="true">
-        <span id="progressBar"></span>
+      <div class="resonance-progress" aria-hidden="true">
+        <span id="resonanceProgress"></span>
       </div>
 
-      <audio id="ritualAudio" src="/audio.mp3" preload="metadata"></audio>
+      <div class="resonance-instruction" aria-hidden="true">
+        <span>MOVE TO RESONATE</span>
+        <i></i>
+      </div>
+
+      <audio
+        id="resonanceAudio"
+        src="/audio.mp3"
+        preload="metadata"
+      ></audio>
+
+      <noscript>请启用 JavaScript 以体验互动光场与唱诵。</noscript>
     </main>
-
-    <script>
-      (() => {
-        const stage = document.getElementById("ritualStage");
-        const viewToggle = document.getElementById("viewToggle");
-        const listenButton = document.getElementById("listenButton");
-        const audio = document.getElementById("ritualAudio");
-        const timeLabel = document.getElementById("timeLabel");
-        const progressBar = document.getElementById("progressBar");
-        const artworkElements = [...document.querySelectorAll(".artwork")];
-        const fallbackDuration = 472;
-
-        const formatTime = (seconds) => {
-          const safe = Number.isFinite(seconds) ? Math.max(0, seconds) : 0;
-          const minutes = Math.floor(safe / 60);
-          const remainder = Math.floor(safe % 60);
-          return `${String(minutes).padStart(2, "0")}:${String(remainder).padStart(2, "0")}`;
-        };
-
-        const updateTime = () => {
-          const duration = audio.duration || fallbackDuration;
-          timeLabel.textContent = `${formatTime(audio.currentTime)} / ${formatTime(duration)}`;
-          progressBar.style.transform = `scaleX(${Math.min(audio.currentTime / duration, 1)})`;
-        };
-
-        viewToggle.addEventListener("click", () => {
-          const isFull = stage.classList.toggle("is-full");
-          viewToggle.setAttribute(
-            "aria-label",
-            isFull ? "返回莲师近景" : "查看完整唐卡",
-          );
-          viewToggle.querySelector("span").textContent = isFull ? "近观" : "全景";
-          viewToggle.querySelector("b").textContent = isFull
-            ? "RETURN TO PORTRAIT"
-            : "VIEW THE WHOLE";
-        });
-
-        listenButton.addEventListener("click", async () => {
-          if (!audio.paused) {
-            audio.pause();
-            return;
-          }
-          try {
-            await audio.play();
-          } catch {
-            listenButton.querySelector("small").textContent = "点击重试";
-          }
-        });
-
-        audio.addEventListener("play", () => {
-          stage.classList.add("is-playing");
-          listenButton.setAttribute("aria-label", "暂停唱诵");
-          listenButton.setAttribute("aria-pressed", "true");
-          listenButton.querySelector("strong").textContent = "暂停";
-        });
-
-        audio.addEventListener("pause", () => {
-          stage.classList.remove("is-playing");
-          listenButton.setAttribute("aria-label", "聆听唱诵");
-          listenButton.setAttribute("aria-pressed", "false");
-          listenButton.querySelector("strong").textContent = "聆听";
-        });
-
-        audio.addEventListener("timeupdate", updateTime);
-        audio.addEventListener("loadedmetadata", updateTime);
-        audio.addEventListener("ended", () => {
-          audio.currentTime = 0;
-          updateTime();
-        });
-
-        window.addEventListener("keydown", (event) => {
-          if (
-            event.code === "Space" &&
-            !event.target.matches("button, a, input, textarea, select")
-          ) {
-            event.preventDefault();
-            listenButton.click();
-          }
-        });
-
-        stage.addEventListener("pointermove", (event) => {
-          if (
-            event.pointerType === "touch" ||
-            matchMedia("(prefers-reduced-motion: reduce)").matches
-          ) {
-            return;
-          }
-          const bounds = stage.getBoundingClientRect();
-          const x = (event.clientX - bounds.left) / bounds.width - 0.5;
-          const y = (event.clientY - bounds.top) / bounds.height - 0.5;
-          stage.style.setProperty("--ritual-x", `${x * -16}px`);
-          stage.style.setProperty("--ritual-y", `${y * -10}px`);
-          stage.style.setProperty("--ritual-depth-x", `${x * 24}px`);
-          stage.style.setProperty("--ritual-depth-y", `${y * 16}px`);
-        });
-
-        stage.addEventListener("pointerleave", () => {
-          stage.style.setProperty("--ritual-x", "0px");
-          stage.style.setProperty("--ritual-y", "0px");
-          stage.style.setProperty("--ritual-depth-x", "0px");
-          stage.style.setProperty("--ritual-depth-y", "0px");
-        });
-
-        const loadOriginalArtwork = async () => {
-          try {
-            const parts = await Promise.all(
-              [
-                "/guru-rinpoche-thangka-original.part-00",
-                "/guru-rinpoche-thangka-original.part-01",
-              ].map(async (url) => {
-                const response = await fetch(url, { cache: "force-cache" });
-                if (!response.ok) throw new Error("Artwork part unavailable");
-                return response.arrayBuffer();
-              }),
-            );
-            const src = URL.createObjectURL(
-              new Blob(parts, { type: "image/jpeg" }),
-            );
-            const probe = new Image();
-            probe.src = src;
-            await probe.decode();
-            artworkElements.forEach((image) => {
-              image.src = src;
-              image.dataset.originalResolution = "true";
-            });
-          } catch {}
-        };
-
-        loadOriginalArtwork();
-      })();
-    </script>
+    <script src="/resonance.js" defer></script>
   </body>
 </html>
