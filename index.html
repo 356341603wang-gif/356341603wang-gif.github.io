@@ -1,79 +1,45 @@
-<!doctype html>
-<html lang="zh-CN">
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, viewport-fit=cover"
-    />
-    <meta name="theme-color" content="#1b0906" />
-    <meta
-      name="description"
-      content="蔣貢康楚仁波切唱诵 · सप्तपङ्क्तिप्रार्थना"
-    />
-    <title>सप्तपङ्क्तिप्रार्थना</title>
-    <link rel="stylesheet" href="/resonance.css" />
-  </head>
-  <body>
-    <main
-      id="resonanceStage"
-      class="resonance-stage"
-      data-original-artwork="false"
-    >
-      <canvas
-        id="resonanceCanvas"
-        class="resonance-canvas"
-        aria-hidden="true"
-      ></canvas>
+<!DOCTYPE html><html lang="zh-CN"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="preload" as="image" href="/sukhavati-lacma-15th-century.jpg"/><link rel="preload" as="image" href="/guru-rinpoche-1920x2400-v1.jpg" fetchPriority="high"/><link rel="stylesheet" href="/assets/index-CIYw2fob.css" data-rsc-css-href="/assets/index-CIYw2fob.css" data-precedence="vite-rsc/importer-resources"/><link rel="modulepreload" href="/assets/layout-segment-context-DhisE9RI.js" crossorigin=""/><link rel="modulepreload" href="/assets/rolldown-runtime-BYbx6iT9.js" crossorigin=""/><link rel="modulepreload" href="/assets/index-CSab-b6b.js" crossorigin=""/><link rel="modulepreload" href="/assets/framework-BpSqSxVs.js" crossorigin=""/><link rel="modulepreload" href="/assets/page-Dv_SYW2L.js" crossorigin=""/><link rel="modulepreload" href="/assets/react-CqlbtWpa.js" crossorigin=""/><title>सप्तपङ्क्तिप्रार्थना</title><meta name="description" content="蔣貢康楚仁波切唱诵 · 纯音频"/><meta property="og:title" content="सप्तपङ्क्तिप्रार्थना"/><meta property="og:description" content="蔣貢康楚仁波切唱诵 · 纯音频"/><meta property="og:type" content="website"/><meta property="og:image" content="https://qiyuan.hale-degu-7519.chatgpt.site/guru-rinpoche-thangka-original-6391x8940.jpg"/><meta property="og:image:width" content="6391"/><meta property="og:image:height" content="8940"/><meta property="og:image:alt" content="莲花生大士独尊唐卡"/><meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content="सप्तपङ्क्तिप्रार्थना"/><meta name="twitter:description" content="蔣貢康楚仁波切唱诵 · 纯音频"/><meta name="twitter:image" content="https://qiyuan.hale-degu-7519.chatgpt.site/guru-rinpoche-thangka-original-6391x8940.jpg"/><link rel="icon" href="https://qiyuan.hale-degu-7519.chatgpt.site/guru-rinpoche-thangka-original-6391x8940.jpg" type="image/jpeg"/><link rel="apple-touch-icon" href="https://qiyuan.hale-degu-7519.chatgpt.site/guru-rinpoche-thangka-original-6391x8940.jpg" type="image/jpeg"/><script>self.__VINEXT_RSC_PARAMS__={}</script><script>self.__VINEXT_RSC_NAV__={"pathname":"/","searchParams":[]}</script><link rel="modulepreload" href="/assets/index-CSab-b6b.js" />
+</head><body><main id="experienceStage" class=" "><div class="distant-world" aria-hidden="true"><img class="sukhavati-distance" src="/sukhavati-lacma-15th-century.jpg" alt="" width="1793" height="2100" decoding="async"/><span class="distance-haze"></span><span class="distance-light"></span></div><button type="button" class="sacred-portrait" aria-label="聆听唱诵" aria-pressed="false"><span class="pointer-light" aria-hidden="true"></span><span class="aura-field" aria-hidden="true"></span><span class="mandorla" aria-hidden="true"></span><span class="portrait-vessel" style="opacity:1;transform:none"><img id="sacredArtwork" src="/guru-rinpoche-1920x2400-v1.jpg" alt="莲花生大士独尊唐卡" width="6391" height="8940" loading="eager" decoding="async" fetchPriority="high" draggable="false"/><span class="portrait-lustre" aria-hidden="true"></span></span></button><script id="artworkBootstrap">
+(() => {
+  const image = document.getElementById("sacredArtwork");
+  const publish = async (src) => {
+    const probe = new Image();
+    probe.src = src;
+    await probe.decode();
+    if (image) {
+      image.src = src;
+      image.dataset.originalResolution = "true";
+    }
+    window.__qiyuanArtworkUrl = src;
+    window.dispatchEvent(
+      new CustomEvent("qiyuan:artwork-ready", { detail: { src } }),
+    );
+  };
 
-      <img
-        id="resonanceArtwork"
-        class="resonance-accessible-art"
-        src="/guru-rinpoche-1920x2400-v1.jpg"
-        alt="莲花生大士独尊唐卡"
-        width="6391"
-        height="8940"
-        data-original-resolution="false"
-      />
+  (async () => {
+    try {
+      const direct = await fetch("/guru-rinpoche-thangka-original-6391x8940.jpg", {
+        method: "HEAD",
+        cache: "force-cache",
+      });
+      if (direct.ok) {
+        await publish("/guru-rinpoche-thangka-original-6391x8940.jpg");
+        return;
+      }
+    } catch {}
 
-      <header class="resonance-heading">
-        <span lang="sa">गुरु पद्मसम्भव</span>
-        <h1 lang="sa">सप्तपङ्क्तिप्रार्थना</h1>
-        <p>蔣貢康楚仁波切唱诵</p>
-      </header>
-
-      <button
-        id="resonanceListen"
-        type="button"
-        class="resonance-listen"
-        aria-label="聆听唱诵"
-        aria-pressed="false"
-      >
-        <span id="resonanceListenLabel" class="resonance-listen-label">
-          聆听
-        </span>
-        <span id="resonanceListenTime" class="resonance-listen-time">
-          00:00 / 07:52
-        </span>
-      </button>
-
-      <div class="resonance-progress" aria-hidden="true">
-        <span id="resonanceProgress"></span>
-      </div>
-
-      <div class="resonance-instruction" aria-hidden="true">
-        <span>MOVE TO RESONATE</span>
-        <i></i>
-      </div>
-
-      <audio
-        id="resonanceAudio"
-        src="/audio.mp3"
-        preload="metadata"
-      ></audio>
-
-      <noscript>请启用 JavaScript 以体验互动光场与唱诵。</noscript>
-    </main>
-    <script src="/resonance.js" defer></script>
-  </body>
-</html>
+    try {
+      const parts = await Promise.all(
+        ["/guru-rinpoche-thangka-original.part-00","/guru-rinpoche-thangka-original.part-01"].map(async (url) => {
+          const response = await fetch(url, { cache: "force-cache" });
+          if (!response.ok) throw new Error("Artwork part unavailable");
+          return response.arrayBuffer();
+        }),
+      );
+      await publish(
+        URL.createObjectURL(new Blob(parts, { type: "image/jpeg" })),
+      );
+    } catch {}
+  })();
+})();
+</script><header class="identity" style="opacity:1;transform:none"><h1 lang="sa">सप्तपङ्क्तिप्रार्थना</h1><span>蔣貢康楚仁波切唱诵</span></header><section class="transport-overlay" aria-label="播放控制" style="opacity:1;transform:none"><a id="listenControl" class="listen-control" href="/audio.mp3" role="button" aria-label="聆听" aria-pressed="false"><span class="seal-mark" aria-hidden="true"></span><span>聆听</span></a></section><input id="progress" class="edge-progress" type="range" min="0" max="472" step="0.1" aria-label="音频进度" style="--progress:0%" value="0"/><audio id="audio" src="/audio.mp3" preload="metadata"></audio><div class="opening-convergence" aria-hidden="true"><span class="ray ray-1"></span><span class="ray ray-2"></span><span class="ray ray-3"></span><span class="ray ray-4"></span><span class="ray ray-5"></span><span class="ray ray-6"></span><span class="ray ray-7"></span><span class="ray ray-8"></span><span class="convergence-core"></span></div></main><script id="_R_">import("/assets/index-CSab-b6b.js")</script></body></html><script>self.__VINEXT_RSC_CHUNKS__=self.__VINEXT_RSC_CHUNKS__||[];self.__VINEXT_RSC_CHUNKS__.push("2:I[\"8c0f216c4604\",[],\"Children\",1]\n3:I[\"15c18cfaeeff\",[],\"LayoutSegmentProvider\",1]\n4:I[\"8c0f216c4604\",[],\"Slot\",1]\n5:I[\"593f344dc510\",[],\"RedirectBoundary\",1]\n:HL[\"/assets/index-CIYw2fob.css\",\"style\"]\n")</script><script>self.__VINEXT_RSC_CHUNKS__=self.__VINEXT_RSC_CHUNKS__||[];self.__VINEXT_RSC_CHUNKS__.push("0:{\"__route\":\"route:/\",\"__interceptionContext\":null,\"__layoutIds\":[\"layout:/\"],\"__rootLayout\":\"/\",\"page:/\":\"$L1\",\"layout:/\":[[[[\"$\",\"link\",\"css:/assets/index-CIYw2fob.css\",{\"rel\":\"stylesheet\",\"precedence\":\"vite-rsc/importer-resources\",\"href\":\"/assets/index-CIYw2fob.css\",\"data-rsc-css-href\":\"/assets/index-CIYw2fob.css\"}],\"$undefined\"],[\"$\",\"html\",null,{\"lang\":\"zh-CN\",\"children\":[\"$\",\"body\",null,{\"children\":[\"$\",\"$L2\",null,{}]}]}]],null],\"route:/\":[[[\"$\",\"meta\",null,{\"charSet\":\"utf-8\"}],[[\"$\",\"title\",\"0\",{\"children\":\"सप्तपङ्क्तिप्रार्थना\"}],[\"$\",\"meta\",\"1\",{\"name\":\"description\",\"content\":\"蔣貢康楚仁波切唱诵 · 纯音频\"}],[\"$\",\"meta\",\"2\",{\"property\":\"og:title\",\"content\":\"सप्तपङ्क्तिप्रार्थना\"}],[\"$\",\"meta\",\"3\",{\"property\":\"og:description\",\"content\":\"蔣貢康楚仁波切唱诵 · 纯音频\"}],[\"$\",\"meta\",\"4\",{\"property\":\"og:type\",\"content\":\"website\"}],[\"$\",\"meta\",\"5\",{\"property\":\"og:image\",\"content\":\"https://qiyuan.hale-degu-7519.chatgpt.site/guru-rinpoche-thangka-original-6391x8940.jpg\"}],[\"$\",\"meta\",\"6\",{\"property\":\"og:image:width\",\"content\":\"6391\"}],[\"$\",\"meta\",\"7\",{\"property\":\"og:image:height\",\"content\":\"8940\"}],[\"$\",\"meta\",\"8\",{\"property\":\"og:image:alt\",\"content\":\"莲花生大士独尊唐卡\"}],[\"$\",\"meta\",\"9\",{\"name\":\"twitter:card\",\"content\":\"summary_large_image\"}],[\"$\",\"meta\",\"10\",{\"name\":\"twitter:title\",\"content\":\"सप्तपङ्क्तिप्रार्थना\"}],[\"$\",\"meta\",\"11\",{\"name\":\"twitter:description\",\"content\":\"蔣貢康楚仁波切唱诵 · 纯音频\"}],[\"$\",\"meta\",\"12\",{\"name\":\"twitter:image\",\"content\":\"https://qiyuan.hale-degu-7519.chatgpt.site/guru-rinpoche-thangka-original-6391x8940.jpg\"}],[\"$\",\"link\",\"13\",{\"rel\":\"icon\",\"href\":\"https://qiyuan.hale-degu-7519.chatgpt.site/guru-rinpoche-thangka-original-6391x8940.jpg\",\"type\":\"image/jpeg\"}],[\"$\",\"link\",\"14\",{\"rel\":\"apple-touch-icon\",\"href\":\"https://qiyuan.hale-degu-7519.chatgpt.site/guru-rinpoche-thangka-original-6391x8940.jpg\",\"type\":\"image/jpeg\"}]],[[\"$\",\"meta\",\"0\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}]]],[\"$\",\"$L3\",null,{\"segmentMap\":{\"children\":[]},\"children\":[\"$\",\"$L4\",null,{\"id\":\"layout:/\",\"parallelSlots\":\"$undefined\",\"children\":[\"$\",\"$L5\",null,{\"children\":[\"$\",\"$L3\",null,{\"segmentMap\":{\"children\":[]},\"children\":[\"$\",\"$L4\",null,{\"id\":\"page:/\"}]}]}]}]}]],\"__layoutFlags\":{\"layout:/\":\"s\"},\"__artifactCompatibility\":{\"schemaVersion\":1,\"graphVersion\":\"app-route-graph:4uhn5s1wvoptc\",\"deploymentVersion\":\"40c1d839-fab2-4e9e-b912-fd696ec36b08\",\"appElementsSchemaVersion\":1,\"rscPayloadSchemaVersion\":1,\"rootBoundaryId\":\"/\",\"renderEpoch\":null}}\n")</script><script>self.__VINEXT_RSC_CHUNKS__=self.__VINEXT_RSC_CHUNKS__||[];self.__VINEXT_RSC_CHUNKS__.push("6:I[\"6efdf509a785\",[],\"default\",1]\n1:[\"$\",\"$L6\",null,{\"params\":\"$@7\",\"searchParams\":\"$@8\"}]\n")</script><script>self.__VINEXT_RSC_CHUNKS__=self.__VINEXT_RSC_CHUNKS__||[];self.__VINEXT_RSC_CHUNKS__.push("7:{}\n8:{}\n")</script><script>self.__VINEXT_RSC_DONE__=true</script>
